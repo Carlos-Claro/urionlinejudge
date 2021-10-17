@@ -45,3 +45,14 @@ def test_1013():
     assert t_1013_o("7 14 106 105") == "106 eh o maior"
     assert t_1013("217 14 6") == "217 eh o maior"
     assert t_1013_o("217 14 6") == "217 eh o maior"
+
+# https://www.urionlinejudge.com.br/judge/en/problems/view/1014
+def t_1014(x,y):
+    media = int(x) / float(y)
+    return "{:0.3f} km/l".format(media)
+
+
+def test_1014():
+    assert t_1014("500", "35.0") == "14.286 km/l"
+    assert t_1014("2254", "124.4") == "18.119 km/l"
+    assert t_1014("4554", "464.6") == "9.802 km/l"
