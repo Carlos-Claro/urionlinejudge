@@ -27,7 +27,21 @@ def t_1013(x):
     maior_ = (maior + list_[2] + abs(maior - list_[2])) / 2
     return "{:0.0f} eh o maior".format(maior_)
 
+def t_1013_o(x):
+    a = x.split()
+    map_ = map(int,a)
+    list_ = list(map_)
+    maior = 0
+    for i in list_:
+        if maior == 0:
+            maior = i
+        maior = (maior+i+abs(maior-i))/2
+    return "{:0.0f} eh o maior".format(maior)
+
 
 def test_1013():
     assert t_1013("7 14 106") == "106 eh o maior"
+    assert t_1013_o("7 14 106") == "106 eh o maior"
+    assert t_1013_o("7 14 106 105") == "106 eh o maior"
     assert t_1013("217 14 6") == "217 eh o maior"
+    assert t_1013_o("217 14 6") == "217 eh o maior"
