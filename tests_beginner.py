@@ -77,3 +77,58 @@ def test_1015():
     assert t_1015("1.0 7.0","5.0 9.0") == 4.4721
     assert t_1015("-2.5 0.4", "12.1 7.3") == 16.1484
     assert t_1015("2.5 -0.4", "-12.2 7.0") == 16.4575
+
+
+# https://www.urionlinejudge.com.br/judge/en/problems/view/1016
+def t_1016(x):
+    a = 60
+    b = 90
+    x = int(x)
+    t = (x / (b - a)) * 60
+    return "{:0.0f} minutos".format(t)
+
+
+def test_1016():
+    assert t_1016("30") == "60 minutos"
+    assert t_1016("110") == "220 minutos"
+    assert t_1016("7") == "14 minutos"
+
+
+# https://www.urionlinejudge.com.br/judge/en/problems/view/1017
+def t_1017(a,b):
+    x = 12
+    litros = (int(a) * int(b))/x
+    return "{:0.3f}".format(litros)
+
+
+def test_1017():
+    assert t_1017("10","85") == "70.833"
+    assert t_1017("2", "92") == "15.333"
+    assert t_1017("22", "67") == "122.833"
+
+from math import floor
+# https://www.urionlinejudge.com.br/judge/en/problems/view/1018
+def t_1018(a):
+    notas = [100,50,20,10,5,2,1]
+    qtde_notas = {}
+    sobra = int(a)
+    for nota in notas:
+        valor = sobra / nota
+        qtde_notas[nota] = 0
+        if valor > 0:
+            qtde_notas[nota] = floor(valor)
+            sobra = sobra % nota
+    retorno = '{:0.0f}\n'.format(a)
+    for c,v in qtde_notas.items():
+        if c == 1:
+            retorno += "{:0.0f} nota(s) de R$ {},00".format(v,c)
+        else:
+            retorno += "{:0.0f} nota(s) de R$ {},00\n".format(v, c)
+    return retorno
+
+
+def test_1018():
+    assert t_1018(576) == "576\n5 nota(s) de R$ 100,00\n1 nota(s) de R$ 50,00\n1 nota(s) de R$ 20,00\n0 nota(s) de R$ 10,00\n1 nota(s) de R$ 5,00\n0 nota(s) de R$ 2,00\n1 nota(s) de R$ 1,00"
+    assert t_1018(11257) == "11257\n112 nota(s) de R$ 100,00\n1 nota(s) de R$ 50,00\n0 nota(s) de R$ 20,00\n0 nota(s) de R$ 10,00\n1 nota(s) de R$ 5,00\n1 nota(s) de R$ 2,00\n0 nota(s) de R$ 1,00"
+    assert t_1018(503) == "503\n5 nota(s) de R$ 100,00\n0 nota(s) de R$ 50,00\n0 nota(s) de R$ 20,00\n0 nota(s) de R$ 10,00\n0 nota(s) de R$ 5,00\n1 nota(s) de R$ 2,00\n1 nota(s) de R$ 1,00"
+
