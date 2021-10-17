@@ -132,3 +132,49 @@ def test_1018():
     assert t_1018(11257) == "11257\n112 nota(s) de R$ 100,00\n1 nota(s) de R$ 50,00\n0 nota(s) de R$ 20,00\n0 nota(s) de R$ 10,00\n1 nota(s) de R$ 5,00\n1 nota(s) de R$ 2,00\n0 nota(s) de R$ 1,00"
     assert t_1018(503) == "503\n5 nota(s) de R$ 100,00\n0 nota(s) de R$ 50,00\n0 nota(s) de R$ 20,00\n0 nota(s) de R$ 10,00\n0 nota(s) de R$ 5,00\n1 nota(s) de R$ 2,00\n1 nota(s) de R$ 1,00"
 
+
+# https://www.urionlinejudge.com.br/judge/en/problems/view/1019
+def t_1019(a):
+    x = int(a)
+    if x < 60:
+        return "0:0:{:0.0f}".format(x)
+    horas = 0
+    segundos = 0
+    minutos = x / 60
+    if minutos > 59:
+        horas = floor(minutos/60)
+        minutos = floor((x - (horas * 3600))/60)
+    else:
+        minutos = floor(minutos)
+    segundos = floor(x - (horas * 3600) - (minutos * 60))
+    return "{:0.0f}:{:0.0f}:{:0.0f}".format(horas,minutos,segundos)
+
+from time import gmtime
+from time import strftime
+def t_1019_o(a):
+    x = int(a)
+    return strftime("%-H:%-M:%-S", gmtime(x))
+
+def t_1019_sem_imp(a):
+    x = int(a)
+    h = x//3600
+    m = (x%3600)//60
+    s = (x%3600)%60
+    return "{:0.0f}:{:0.0f}:{:0.0f}".format(h,m,s)
+
+
+def test_1019():
+    assert t_1019(556) == "0:9:16"
+    assert t_1019(1) == "0:0:1"
+    assert t_1019(140153) == "38:55:53"
+    assert t_1019_o(556) == "0:9:16"
+    assert t_1019_o(1) == "0:0:1"
+    assert t_1019_sem_imp(556) == "0:9:16"
+    assert t_1019_sem_imp(1) == "0:0:1"
+    assert t_1019_sem_imp(140153) == "38:55:53"
+
+
+
+
+
+
