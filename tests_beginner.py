@@ -174,7 +174,19 @@ def test_1019():
     assert t_1019_sem_imp(140153) == "38:55:53"
 
 
+# https://www.urionlinejudge.com.br/judge/en/problems/view/1020
+def t_1020(a):
+    x = int(a)
+    ano = x//365
+    mes = (x%365)//30
+    dias = (x%365)%30
+    return "{} ano(s)\n{} mes(es)\n{} dia(s)".format(ano, mes, dias)
 
+
+def test_1020():
+    assert t_1020(400) == "1 ano(s)\n1 mes(es)\n5 dia(s)"
+    assert t_1020(800) == "2 ano(s)\n2 mes(es)\n10 dia(s)"
+    assert t_1020(30) == "0 ano(s)\n1 mes(es)\n0 dia(s)"
 
 
 
