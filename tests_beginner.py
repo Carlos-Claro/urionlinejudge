@@ -113,10 +113,10 @@ def t_1018(a):
     qtde_notas = {}
     sobra = int(a)
     for nota in notas:
-        valor = sobra / nota
+        valor = sobra // nota
         qtde_notas[nota] = 0
         if valor > 0:
-            qtde_notas[nota] = floor(valor)
+            qtde_notas[nota] = valor
             sobra = sobra % nota
     retorno = '{:0.0f}\n'.format(a)
     for c,v in qtde_notas.items():
@@ -189,4 +189,78 @@ def test_1020():
     assert t_1020(30) == "0 ano(s)\n1 mes(es)\n0 dia(s)"
 
 
+# https://www.urionlinejudge.com.br/judge/en/problems/view/1021
+def t_1021(a):
+    moedas = {
+        "100.00":'nota',
+        "50.00":'nota',
+        "20.00":'nota',
+        "10.00":'nota',
+        "5.00":'nota',
+        "2.00":'nota',
+        "1.00":'moeda',
+        "0.50":'moeda',
+        "0.25":'moeda',
+        "0.10":'moeda',
+        "0.05":'moeda',
+        "0.01":'moeda'
+    }
+    sobra = float(a)
+    retorno = 'NOTAS:\n'
+    for m,tipo in moedas.items():
+        moeda = float(m)
+        if moeda == 1.00:
+            retorno += "MOEDAS:\n"
+        valor = sobra//moeda
+        retorno += "{:0.0f} {}(s) de R$ {:0.2f}".format(valor, tipo, moeda)
+        sobra = sobra%moeda
+        if moeda != 0.01:
+            retorno += "\n"
+    print(retorno)
+    return retorno
+
+
+def test_1021():
+    assert t_1021(576.73) == "NOTAS:\n" \
+                                "5 nota(s) de R$ 100.00\n" \
+                                "1 nota(s) de R$ 50.00\n" \
+                                "1 nota(s) de R$ 20.00\n" \
+                                "0 nota(s) de R$ 10.00\n" \
+                                "1 nota(s) de R$ 5.00\n" \
+                                "0 nota(s) de R$ 2.00\n" \
+                                "MOEDAS:\n" \
+                                "1 moeda(s) de R$ 1.00\n" \
+                                "1 moeda(s) de R$ 0.50\n" \
+                                "0 moeda(s) de R$ 0.25\n" \
+                                "2 moeda(s) de R$ 0.10\n" \
+                                "0 moeda(s) de R$ 0.05\n" \
+                                "3 moeda(s) de R$ 0.01"
+    assert t_1021(4.00) == "NOTAS:\n" \
+                                "0 nota(s) de R$ 100.00\n" \
+                                "0 nota(s) de R$ 50.00\n" \
+                                "0 nota(s) de R$ 20.00\n" \
+                                "0 nota(s) de R$ 10.00\n" \
+                                "0 nota(s) de R$ 5.00\n" \
+                                "2 nota(s) de R$ 2.00\n" \
+                                "MOEDAS:\n" \
+                                "0 moeda(s) de R$ 1.00\n" \
+                                "0 moeda(s) de R$ 0.50\n" \
+                                "0 moeda(s) de R$ 0.25\n" \
+                                "0 moeda(s) de R$ 0.10\n" \
+                                "0 moeda(s) de R$ 0.05\n" \
+                                "0 moeda(s) de R$ 0.01"
+    assert t_1021(91.01) == "NOTAS:\n" \
+                                "0 nota(s) de R$ 100.00\n" \
+                                "1 nota(s) de R$ 50.00\n" \
+                                "2 nota(s) de R$ 20.00\n" \
+                                "0 nota(s) de R$ 10.00\n" \
+                                "0 nota(s) de R$ 5.00\n" \
+                                "0 nota(s) de R$ 2.00\n" \
+                                "MOEDAS:\n" \
+                                "1 moeda(s) de R$ 1.00\n" \
+                                "0 moeda(s) de R$ 0.50\n" \
+                                "0 moeda(s) de R$ 0.25\n" \
+                                "0 moeda(s) de R$ 0.10\n" \
+                                "0 moeda(s) de R$ 0.05\n" \
+                                "1 moeda(s) de R$ 0.01"
 
