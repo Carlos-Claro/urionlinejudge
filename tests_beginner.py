@@ -309,3 +309,28 @@ def t_1035(a, b, c, d):
 def test_1035():
     assert t_1035(5,6,7,8) == "Valores nao aceitos"
     assert t_1035(2,3,2,6) == "Valores aceitos"
+
+
+# https://www.urionlinejudge.com.br/judge/en/problems/view/1036
+import math
+def t_1036(x):
+    x = x.split()
+    a = float(x[0])
+    b = float(x[1])
+    c = float(x[2])
+    if a > 0 and b > 0 and c > 0:
+        x = (b**2)-(4*a*c)
+        if x<0:
+            return "Impossivel calcular"
+        x = math.sqrt(x)
+        r1 = (-b+x)/(2*a)
+        r2 = (-b-x)/(2*a)
+        return "R1 = {:0.5f}\nR2 = {:0.5f}".format(r1,r2)
+    return "Impossivel calcular"
+
+
+def test_1036():
+    assert t_1036("0.0 20.0 5.0") == "Impossivel calcular"
+    assert t_1036("10.0 20.1 5.1") == "R1 = -0.29788\nR2 = -1.71212"
+    assert t_1036("10.3 203.0 5.0") == "R1 = -0.02466\nR2 = -19.68408"
+    assert t_1036("10.0 3.0 5.0") == "Impossivel calcular"
