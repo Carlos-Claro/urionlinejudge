@@ -192,23 +192,23 @@ def test_1020():
 # https://www.urionlinejudge.com.br/judge/en/problems/view/1021
 def t_1021(a):
     moedas = {
-        "100.00":'nota',
-        "50.00":'nota',
-        "20.00":'nota',
-        "10.00":'nota',
-        "5.00":'nota',
-        "2.00":'nota',
-        "1.00":'moeda',
-        "0.50":'moeda',
-        "0.25":'moeda',
-        "0.10":'moeda',
-        "0.05":'moeda',
-        "0.01":'moeda'
+        100.00:'nota',
+        50.00:'nota',
+        20.00:'nota',
+        10.00:'nota',
+        5.00:'nota',
+        2.00:'nota',
+        1.00:'moeda',
+        0.50:'moeda',
+        0.25:'moeda',
+        0.10:'moeda',
+        0.05:'moeda',
+        0.01:'moeda'
     }
-    sobra = float(a)
+    sobra = float(a) + 0.001
     retorno = 'NOTAS:\n'
     for m,tipo in moedas.items():
-        moeda = float(m)
+        moeda = m
         if moeda == 1.00:
             retorno += "MOEDAS:\n"
         valor = sobra//moeda
@@ -263,4 +263,49 @@ def test_1021():
                                 "0 moeda(s) de R$ 0.10\n" \
                                 "0 moeda(s) de R$ 0.05\n" \
                                 "1 moeda(s) de R$ 0.01"
+    assert t_1021(44.55) == "NOTAS:\n" \
+                            "0 nota(s) de R$ 100.00\n" \
+                            "0 nota(s) de R$ 50.00\n" \
+                            "2 nota(s) de R$ 20.00\n" \
+                            "0 nota(s) de R$ 10.00\n" \
+                            "0 nota(s) de R$ 5.00\n" \
+                            "2 nota(s) de R$ 2.00\n" \
+                            "MOEDAS:\n" \
+                            "0 moeda(s) de R$ 1.00\n" \
+                            "1 moeda(s) de R$ 0.50\n" \
+                            "0 moeda(s) de R$ 0.25\n" \
+                            "0 moeda(s) de R$ 0.10\n" \
+                            "1 moeda(s) de R$ 0.05\n" \
+                            "0 moeda(s) de R$ 0.01"
+    assert t_1021(77.77) == "NOTAS:\n" \
+                            "0 nota(s) de R$ 100.00\n" \
+                            "1 nota(s) de R$ 50.00\n" \
+                            "1 nota(s) de R$ 20.00\n" \
+                            "0 nota(s) de R$ 10.00\n" \
+                            "1 nota(s) de R$ 5.00\n" \
+                            "1 nota(s) de R$ 2.00\n" \
+                            "MOEDAS:\n" \
+                            "0 moeda(s) de R$ 1.00\n" \
+                            "1 moeda(s) de R$ 0.50\n" \
+                            "1 moeda(s) de R$ 0.25\n" \
+                            "0 moeda(s) de R$ 0.10\n" \
+                            "0 moeda(s) de R$ 0.05\n" \
+                            "2 moeda(s) de R$ 0.01"
 
+
+# https://www.urionlinejudge.com.br/judge/en/problems/view/1035
+def t_1035(a, b, c, d):
+    a = int(a)
+    b = int(b)
+    c = int(c)
+    d = int(d)
+    if ( b > c and d > a and (c+d) > (a+b) and c >= 0 and d >= 0 and a%2 == 0):
+        retorno = "Valores aceitos"
+    else:
+        retorno = "Valores nao aceitos"
+    return retorno
+
+
+def test_1035():
+    assert t_1035(5,6,7,8) == "Valores nao aceitos"
+    assert t_1035(2,3,2,6) == "Valores aceitos"
