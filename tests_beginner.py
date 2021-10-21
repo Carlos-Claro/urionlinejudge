@@ -334,3 +334,31 @@ def test_1036():
     assert t_1036("10.0 20.1 5.1") == "R1 = -0.29788\nR2 = -1.71212"
     assert t_1036("10.3 203.0 5.0") == "R1 = -0.02466\nR2 = -19.68408"
     assert t_1036("10.0 3.0 5.0") == "Impossivel calcular"
+
+
+# https://www.urionlinejudge.com.br/judge/en/problems/view/1037
+def t_1037(x):
+    a = float(x)
+    if a < 0.0000000 or a > 100.0000000 :
+        return "Fora de intervalo"
+    elif a <= 25.0000000 :
+        return "Intervalo [0,25]"
+    elif a >= 25.0000000 and a <= 50.0000000 :
+        return "Intervalo (25,50]"
+    elif a >= 50.0000000 and a <= 75.0000000:
+        return "Intervalo (50,75]"
+    elif a >= 75.0000000 and a <= 100.0000000:
+        return "Intervalo (75,100]"
+
+
+
+def test_1037():
+    assert t_1037(0) == "Intervalo [0,25]"
+    assert t_1037(1) == "Intervalo [0,25]"
+    assert t_1037(75.01) == "Intervalo (75,100]"
+    assert t_1037(25.01) == "Intervalo (25,50]"
+    assert t_1037(25.00) == "Intervalo [0,25]"
+    assert t_1037(26.00) == "Intervalo (25,50]"
+    assert t_1037(24.00) == "Intervalo [0,25]"
+    assert t_1037(100.00) == "Intervalo (75,100]"
+    assert t_1037(-25.02) == "Fora de intervalo"
