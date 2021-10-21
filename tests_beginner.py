@@ -362,3 +362,22 @@ def test_1037():
     assert t_1037(24.00) == "Intervalo [0,25]"
     assert t_1037(100.00) == "Intervalo (75,100]"
     assert t_1037(-25.02) == "Fora de intervalo"
+
+
+
+# https://www.urionlinejudge.com.br/judge/en/problems/view/1038
+def t_1038(x):
+    a = x.split()
+    data = [1, 4.00, 4.50, 5.00, 2.00, 1.50]
+    valor = data[int(a[0])] * int(a[1])
+    return "Total: R$ {:0.2f}".format(valor)
+
+
+def test_1038():
+    assert t_1038("3 2") == "Total: R$ 10.00"
+    assert t_1038("4 3") == "Total: R$ 6.00"
+    assert t_1038("2 3") == "Total: R$ 13.50"
+
+
+
+
