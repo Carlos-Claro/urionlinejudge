@@ -411,8 +411,45 @@ def t_1040(a):
     return retorno
 
 def test_1040():
-
     assert t_1040("2.0 4.0 7.5 8.0 6.4") == "Media: 5.4\nAluno em exame.\nNota do exame: 6.4\nAluno aprovado.\nMedia final: 5.9"
     assert t_1040("9.0 4.0 8.5 9.0") == "Media: 7.3\nAluno aprovado."
     assert t_1040("2.0 6.5 4.0 9.0") == "Media: 4.8\nAluno reprovado."
 
+
+# https://www.urionlinejudge.com.br/judge/en/problems/view/1041
+def t_1041(a):
+    pontos = a.split()
+    x = float(pontos[0])
+    y = float(pontos[1])
+    if x == 0.0 and y == 0.0:
+        retorno = "Origem"
+    elif x == 0.0 or y == 0.0:
+        if x == 0.0:
+            retorno = "Eixo Y"
+        else:
+            retorno = "Eixo X"
+    else:
+        ponto_x = 'positivo'
+        ponto_y = 'positivo'
+        if x <= 0.0:
+            ponto_x = 'negativo'
+        if y <= 0.0:
+            ponto_y = 'negativo'
+        if ponto_x == 'positivo' and ponto_y == 'positivo':
+            retorno = "Q1"
+        elif ponto_x == 'positivo' and ponto_y == 'negativo':
+            retorno = "Q4"
+        elif ponto_x == 'negativo' and ponto_y == 'positivo':
+            retorno = "Q2"
+        else:
+            retorno = "Q3"
+    return retorno
+
+def test_1041():
+    assert t_1041("4.5 -2.2") == "Q4"
+    assert t_1041("-4.5 2.2") == "Q2"
+    assert t_1041("0.1 0.1") == "Q1"
+    assert t_1041("-0.1 -0.1") == "Q3"
+    assert t_1041("0.0 0.0") == "Origem"
+    assert t_1041("0.0 0.1") == "Eixo Y"
+    assert t_1041("0.1 0.0") == "Eixo X"
