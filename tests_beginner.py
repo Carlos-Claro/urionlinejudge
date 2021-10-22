@@ -379,5 +379,40 @@ def test_1038():
     assert t_1038("2 3") == "Total: R$ 13.50"
 
 
+# https://www.urionlinejudge.com.br/judge/en/problems/view/1040
+def t_1040(a):
+    retorno = ''
+    x = a.split()
+    p = [2,3,4,1]
+    r = 0
+    qtde = 0
+    total_ = 0
+    for v in p:
+        total_ = total_ + v
+        r = r + (v*float(x[qtde]))
+        qtde = qtde+1
+    media = r/total_
+    retorno += "Media: {:0.1f}\n".format(media)
+    if media >= 7.0:
+        retorno += 'Aluno aprovado.'
+    elif media < 5.0:
+        retorno += "Aluno reprovado."
+    else:
+        retorno += "Aluno em exame.\n"
+        if x[4]:
+            retorno += "Nota do exame: {:0.1f}\n".format(float(x[4]))
+            media_exame = (media + float(x[4]))/2
+            if media_exame >= 5.0 :
+                retorno += "Aluno aprovado.\nMedia final: {:0.1f}".format(media_exame)
+            else:
+                retorno += "Aluno reprovado.\nMedia final: {:0.1f}".format(media_exame)
+        else:
+            retorno += "Aluno reprovado."
+    return retorno
 
+def test_1040():
+
+    assert t_1040("2.0 4.0 7.5 8.0 6.4") == "Media: 5.4\nAluno em exame.\nNota do exame: 6.4\nAluno aprovado.\nMedia final: 5.9"
+    assert t_1040("9.0 4.0 8.5 9.0") == "Media: 7.3\nAluno aprovado."
+    assert t_1040("2.0 6.5 4.0 9.0") == "Media: 4.8\nAluno reprovado."
 
