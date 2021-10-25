@@ -480,3 +480,24 @@ def test_1042():
     assert t_1042("7 21 -14") == "-14\n7\n21\n\n7\n21\n-14"
     assert t_1042("-14 21 7") == "-14\n7\n21\n\n-14\n21\n7"
 
+
+# https://www.beecrowd.com.br/judge/en/problems/view/1043
+def t_1043(a):
+    x = a.split()
+    map_ = map(float, x)
+    list_ = list(map_)
+    list_origi = list_.copy()
+    list_.sort()
+    print(list_)
+    retorno = ''
+    if (list_[0] + list_[1] ) > list_[2]:
+        retorno = "Perimetro = {:0.1f}".format(sum(list_))
+    else:
+        retorno = "Area = {:0.1f}".format(((list_origi[0] + list_origi[1]) * list_origi[2])/2)
+    print(retorno)
+    return retorno
+
+
+def test_1043():
+    assert t_1043("6.0 4.0 2.0") == "Area = 10.0"
+    assert t_1043("6.0 4.0 2.1") == "Perimetro = 12.1"
