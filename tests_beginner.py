@@ -453,3 +453,30 @@ def test_1041():
     assert t_1041("0.0 0.0") == "Origem"
     assert t_1041("0.0 0.1") == "Eixo Y"
     assert t_1041("0.1 0.0") == "Eixo X"
+
+
+# https://www.beecrowd.com.br/judge/en/problems/view/1042
+def t_1042(a):
+    x = a.split()
+    map_ = map(int,x)
+    list_origi = list(map_)
+    list_ = list_origi.copy()
+    list_.sort()
+    retorno = ''
+    seq = 0
+    for n in list_:
+        if seq > 0:
+            retorno += "\n"
+        seq = seq + 1
+        retorno += "{}".format(n)
+    retorno += "\n"
+    for m in list_origi:
+        retorno += "\n{}".format(m)
+    print(retorno)
+    return retorno
+
+
+def test_1042():
+    assert t_1042("7 21 -14") == "-14\n7\n21\n\n7\n21\n-14"
+    assert t_1042("-14 21 7") == "-14\n7\n21\n\n-14\n21\n7"
+
