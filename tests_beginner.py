@@ -539,3 +539,32 @@ def test_3358():
     assert t_3358("Hofmann") == "Hofmann eh facil"
     assert t_3358("Lewandowski") == "Lewandowski nao eh facil"
     assert t_3358("Nowak") == "Nowak eh facil"
+
+
+# https://www.beecrowd.com.br/judge/en/problems/view/3357
+def t_3357(a, b):
+    x = a.split()
+    np = int(x[0])
+    l = float(x[1])
+    q = float(x[2])
+    nomes = b.split()
+    c = l / q
+    sobra = l % q
+    sobra_string = float("{:0.1f}".format(sobra))
+    posicao = int(c%np)
+    if sobra_string == 0.0:
+        if posicao == 0:
+            posicao = np - 1
+        else:
+            posicao = posicao - 1
+        sobra = q
+    elif sobra_string == q:
+        if posicao == np:
+            posicao = np - 1
+    retorno = "{} {:0.1f}".format(nomes[posicao], sobra)
+    print(retorno)
+    return retorno
+
+
+def test_3357():
+    assert t_3357("3 3.5 0.3", "Maria Juca Bob") == "Bob 0.2"
