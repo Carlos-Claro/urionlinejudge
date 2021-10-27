@@ -501,3 +501,41 @@ def t_1043(a):
 def test_1043():
     assert t_1043("6.0 4.0 2.0") == "Area = 10.0"
     assert t_1043("6.0 4.0 2.1") == "Perimetro = 12.1"
+
+
+# https://www.beecrowd.com.br/judge/en/problems/view/3358
+def  t_3358(a):
+    letras = [chr(x) for x in range(97, 123)]
+    vogais = ['a', 'e', 'i', 'o', 'u']
+    consoantes = []
+    for x in letras:
+        if x not in vogais:
+            consoantes.append(x)
+    nome = list(a)
+    nome_consoantes_seq = 0
+    facil = True
+    for letra in nome:
+        if letra.lower() in consoantes:
+            nome_consoantes_seq = nome_consoantes_seq + 1
+            if nome_consoantes_seq > 2:
+                facil = False
+        else:
+            nome_consoantes_seq = 0
+    if facil:
+        retorno = "{} eh facil".format(a)
+    else:
+        retorno = "{} nao eh facil".format(a)
+    print(retorno)
+    return retorno
+
+
+def test_3358():
+
+    assert t_3358("Kowalcyzk") == "Kowalcyzk nao eh facil"
+    assert t_3358("Scherer") == "Scherer nao eh facil"
+    assert t_3358("Bianchi") == "Bianchi nao eh facil"
+    assert t_3358("Ferrari") == "Ferrari eh facil"
+    assert t_3358("Hoffmann") == "Hoffmann nao eh facil"
+    assert t_3358("Hofmann") == "Hofmann eh facil"
+    assert t_3358("Lewandowski") == "Lewandowski nao eh facil"
+    assert t_3358("Nowak") == "Nowak eh facil"
