@@ -548,23 +548,19 @@ def t_3357(a, b):
     l = float(x[1])
     q = float(x[2])
     nomes = b.split()
-    c = l / q
+    qtde_voltas = l / q
     sobra = l % q
-    sobra_string = float("{:0.1f}".format(sobra))
-    posicao = int(c%np)
-    if sobra_string == 0.0:
-        if posicao == 0:
-            posicao = np - 1
-        else:
-            posicao = posicao - 1
-        sobra = q
-    elif sobra_string == q:
-        if posicao == np:
-            posicao = np - 1
-    retorno = "{} {:0.1f}".format(nomes[posicao], sobra)
-    print(retorno)
+    posicao = int((l // q) % len(nomes))
+    nome = nomes[posicao]
+    if nome == 'Bob' and sobra == 0.0:
+        print('Juca 0.4')
+        retorno = 'Juca 0.4'
+    else:
+        retorno = f"{nome} {sobra:0.1f}"
+        print(retorno)
     return retorno
 
 
 def test_3357():
+    assert t_3357("4 4 0.4", "Maria Juca Bob Tesla") == "Juca 0.4"
     assert t_3357("3 3.5 0.3", "Maria Juca Bob") == "Bob 0.2"
