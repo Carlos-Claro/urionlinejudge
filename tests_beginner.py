@@ -503,6 +503,29 @@ def test_1043():
     assert t_1043("6.0 4.0 2.1") == "Perimetro = 12.1"
 
 
+# https://www.beecrowd.com.br/judge/en/problems/view/1044
+def t_1044(a):
+    x, y = map(int, a.split())
+    if y > x:
+        if (y % x) == 0:
+            print("Sao Multiplos")
+            return "Sao Multiplos"
+        print("Nao sao Multiplos")
+        return "Nao sao Multiplos"
+    elif (x % y) == 0:
+        print("Sao Multiplos")
+        return "Sao Multiplos"
+    print("Nao sao Multiplos")
+    return "Nao sao Multiplos"
+
+
+def test_1044():
+    assert t_1044("6 24") == "Sao Multiplos"
+    assert t_1044("6 25") == "Nao sao Multiplos"
+    assert t_1044("25 6") == "Nao sao Multiplos"
+    assert t_1044("24 6") == "Sao Multiplos"
+
+
 # https://www.beecrowd.com.br/judge/en/problems/view/3358
 def  t_3358(a):
     letras = [chr(x) for x in range(97, 123)]
