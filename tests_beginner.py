@@ -565,6 +565,29 @@ def test_1045():
     assert t_1045("8.0 10.0 6.0") == "TRIANGULO RETANGULO"
 
 
+# https://www.beecrowd.com.br/judge/en/problems/view/1046
+def t_1046(a):
+    y = map(int, a.split())
+    x = list(y)
+    if x[0] == x[1]:
+        v = "O JOGO DUROU 24 HORA(S)"
+        print(v)
+        return v
+    elif x[0] > x[1]:
+        v = "O JOGO DUROU {} HORA(S)".format((x[1]+24) - x[0])
+        print(v)
+        return v
+    elif x[0] < x[1]:
+        v = "O JOGO DUROU {} HORA(S)".format(x[1] - x[0])
+        print(v)
+        return v
+
+
+def test_1046():
+    assert t_1046("16 2") == "O JOGO DUROU 10 HORA(S)"
+    assert t_1046("0 0") == "O JOGO DUROU 24 HORA(S)"
+    assert t_1046("2 16") == "O JOGO DUROU 14 HORA(S)"
+
 
 
 # https://www.beecrowd.com.br/judge/en/problems/view/3358
