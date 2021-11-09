@@ -526,6 +526,47 @@ def test_1044():
     assert t_1044("24 6") == "Sao Multiplos"
 
 
+# https://www.beecrowd.com.br/judge/en/problems/view/1045
+def t_1045(x):
+    m = map(float, x.split())
+    i = list(m)
+    i.sort(reverse=True)
+    retorno = ""
+    if i[0] >= i[1] + i[2]:
+        retorno = "NAO FORMA TRIANGULO"
+    elif (i[0]**2) == ((i[1]**2) + (i[2]**2)):
+        retorno = "TRIANGULO RETANGULO"
+    else:
+        if (i[0]**2) > ((i[1]**2) + (i[2]**2)):
+            retorno = "TRIANGULO OBTUSANGULO"
+        elif (i[0]**2) < ((i[1]**2) + (i[2]**2)):
+            retorno = "TRIANGULO ACUTANGULO"
+        if i[0] == i[1] == i[2]:
+            retorno += "\nTRIANGULO EQUILATERO"
+        elif i[0] == i[1] or i[1] == i[2] or i[0] == i[2]:
+            retorno += "\nTRIANGULO ISOSCELES"
+    print(retorno)
+    return retorno
+
+    # A ≥ B + C NAO FORMA TRIANGULO
+    # A2 = B2 + C2 TRIANGULO RETANGULO
+    # if A2 > B2 + C2 TRIANGULO OBTUSANGULO
+    # if A2 < B2 + C2 TRIANGULO ACUTANGULO
+    # TRIANGULO EQUILATERO
+    # TRIANGULO ISOSCELES
+
+
+
+def test_1045():
+    assert t_1045("7.0 5.0 7.0") == "TRIANGULO ACUTANGULO\nTRIANGULO ISOSCELES"
+    assert t_1045("6.0 6.0 10.0") == "TRIANGULO OBTUSANGULO\nTRIANGULO ISOSCELES"
+    assert t_1045("6.0 6.0 6.0") == "TRIANGULO ACUTANGULO\nTRIANGULO EQUILATERO"
+    assert t_1045("5.0 7.0 2.0") == "NAO FORMA TRIANGULO"
+    assert t_1045("8.0 10.0 6.0") == "TRIANGULO RETANGULO"
+
+
+
+
 # https://www.beecrowd.com.br/judge/en/problems/view/3358
 def  t_3358(a):
     letras = [chr(x) for x in range(97, 123)]
