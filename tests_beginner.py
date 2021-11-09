@@ -588,6 +588,41 @@ def test_1046():
     assert t_1046("0 0") == "O JOGO DUROU 24 HORA(S)"
     assert t_1046("2 16") == "O JOGO DUROU 14 HORA(S)"
 
+import datetime
+# https://www.beecrowd.com.br/judge/en/problems/view/1047
+def t_1047(a):
+    y = map(int, a.split())
+    x = list(y)
+    if x[0] == x[1] == x[2] == x[3]:
+        v = "O JOGO DUROU 24 HORA(S) E 0 MINUTO(S)"
+        print(v)
+    elif x[0] > x[2]:
+        d1 = datetime.datetime(1979,12,19,x[0],x[1])
+        d2 = datetime.datetime(1979, 12, 20, x[2], x[3])
+        resto = str((d2 - d1)).split(":")
+        horas = resto[0].replace("-1 day, ", "")
+        minutos = int(resto[1])
+        v = "O JOGO DUROU {} HORA(S) E {} MINUTO(S)".format(horas, minutos)
+        print(v)
+    else:
+        d1 = datetime.datetime(1979, 12, 20, x[0], x[1])
+        d2 = datetime.datetime(1979, 12, 20, x[2], x[3])
+        resto = str((d2 - d1)).split(":")
+        horas = resto[0].replace("-1 day, ", "")
+        minutos = int(resto[1])
+        v = "O JOGO DUROU {} HORA(S) E {} MINUTO(S)".format(horas, minutos)
+        print(v)
+    return v
+
+
+def test_1047():
+    assert t_1047("0 1 23 40") == "O JOGO DUROU 23 HORA(S) E 39 MINUTO(S)"
+    assert t_1047("9 10 7 8") == "O JOGO DUROU 21 HORA(S) E 58 MINUTO(S)"
+    assert t_1047("23 8 1 10") == "O JOGO DUROU 2 HORA(S) E 2 MINUTO(S)"
+    assert t_1047("7 8 9 10") == "O JOGO DUROU 2 HORA(S) E 2 MINUTO(S)"
+    assert t_1047("7 7 7 7") == "O JOGO DUROU 24 HORA(S) E 0 MINUTO(S)"
+    assert t_1047("7 10 8 9") == "O JOGO DUROU 0 HORA(S) E 59 MINUTO(S)"
+
 
 
 # https://www.beecrowd.com.br/judge/en/problems/view/3358
