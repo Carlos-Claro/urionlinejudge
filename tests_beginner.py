@@ -624,6 +624,27 @@ def test_1047():
     assert t_1047("7 10 8 9") == "O JOGO DUROU 0 HORA(S) E 59 MINUTO(S)"
 
 
+def t_1048(a):
+    x = float(a)
+    porcento = 4
+    if x <= 400.00:
+        porcento = 15
+    elif x <= 800.00:
+        porcento = 12
+    elif x <= 1200.00:
+        porcento = 10
+    elif x <= 2000.00:
+        porcento = 7
+    aumento = (x * porcento)/100
+    salario = x + aumento
+    return f'Novo salario: {salario:0.2f}\nReajuste ganho: {aumento:0.2f}\nEm percentual: {porcento:0.0f} %'
+
+
+def test_1048():
+    assert t_1048("400.00") == "Novo salario: 460.00\nReajuste ganho: 60.00\nEm percentual: 15 %"
+    assert t_1048("800.01") == "Novo salario: 880.01\nReajuste ganho: 80.00\nEm percentual: 10 %"
+    assert t_1048("2000.00") == "Novo salario: 2140.00\nReajuste ganho: 140.00\nEm percentual: 7 %"
+
 
 # https://www.beecrowd.com.br/judge/en/problems/view/3358
 def  t_3358(a):
