@@ -646,6 +646,41 @@ def test_1048():
     assert t_1048("2000.00") == "Novo salario: 2140.00\nReajuste ganho: 140.00\nEm percentual: 7 %"
 
 
+def t_1049(a,b,c):
+    x = a
+    y = b
+    z = c
+    array = {
+        "vertebrado": {
+            "ave" : {
+                "carnivoro": "aguia",
+                "onivoro": "pomba"
+            },
+            "mamifero": {
+                "onivoro" : "homem",
+                "herbivoro" : "vaca"
+            }
+        },
+        "invertebrado" : {
+            "inseto" : {
+                "hematofago" : "pulga",
+                "herbivoro" : "lagarta"
+            },
+            "anelideo" : {
+                "hematofago" : "sanguessuga",
+                "onivoro": "minhoca"
+            }
+        }
+    }
+    return array[x][y][z]
+
+
+def test_1049():
+    assert t_1049("vertebrado","mamifero","onivoro") == "homem"
+    assert t_1049("vertebrado","ave","carnivoro") == "aguia"
+    assert t_1049("invertebrado","anelideo","onivoro") == "minhoca"
+
+
 # https://www.beecrowd.com.br/judge/en/problems/view/3358
 def  t_3358(a):
     letras = [chr(x) for x in range(97, 123)]
